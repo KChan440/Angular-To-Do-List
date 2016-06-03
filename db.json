@@ -8,7 +8,7 @@
     {
       "toDoText": "Example2",
       "completed": false,
-      "id": 1
+      "id": 2
     },
     {
       "toDoText": "Example3",
@@ -17,7 +17,7 @@
     },
     {
       "toDoText": "Example4",
-      "completed": false,
+      "completed": true,
       "id": 4
     },
     {
@@ -29,16 +29,6 @@
       "toDoText": "Example6",
       "completed": false,
       "id": 6
-    },
-    {
-      "todoText": "yo",
-      "done": false,
-      "id": 7
-    },
-    {
-      "todoText": "hello",
-      "done": false,
-      "id": 8
     }
   ]
 }

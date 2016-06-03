@@ -28,21 +28,15 @@ app.controller('todoCtrl', function($scope, $http) {
     $http.get('http://localhost:3000/items').success(function(data) {
         console.log(data[0].toDoText);
         for (var i = 0; i <= data.length - 1; i++){
-            $scope.todoList.push({todoText:data[i].toDoText, done:false});
+            $scope.todoList.push({todoText:data[i].toDoText, done:data[i].completed});
         }
         console.log($scope.todoList);
     });
 
     $scope.todoAdd = function() {
         console.log({todoText:$scope.todoInput, done:false});
-        var res = $http.post('http://localhost:3000/items',{todoText:$scope.todoInput, done:false});
-        // $http({
-        //     url: 'http://localhost:3000/items',
-        //     method: "POST",
-        //     data: JSON.stringify({todoText:$scope.todoInput, done:false}),
-        //     headers: {'Content-Type': 'Content-Type: application/json'}
-        // });
-        $scope.todoList.push({todoText:$scope.todoInput, done:false});
+        $http.post('http://localhost:3000/items',{toDoText:$scope.todoInput, done:false});
+        $scope.todoList.push({todoText:$scope.todoInput, done:$scope.todoInput.completed});
         $scope.todoInput = "";
     };
 
