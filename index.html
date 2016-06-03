@@ -33,7 +33,7 @@ app.controller('todoCtrl', function($scope, $http) {
 
     $scope.todoAdd = function() {
         $http.get('http://localhost:3000/items').success(function(data) {
-            data.push({todoText:$scope.todoInput, done:false});
+            $scope.todoList.push({todoText:$scope.todoInput, done:false});
             $scope.todoInput = "";
         });
     };
@@ -46,6 +46,7 @@ app.controller('todoCtrl', function($scope, $http) {
         });
     };
 });
+
 </script>
 
 </body>
