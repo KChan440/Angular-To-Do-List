@@ -23,6 +23,8 @@ var app = angular.module('ToDoList', []);
 
 app.controller('todoCtrl', function($scope, $http) {
     $scope.todoList = [];
+
+
     $http.get('http://localhost:3000/items').success(function(data) {
         console.log(data[0].toDoText);
         for (var i = 0; i <= data.length - 1; i++){
@@ -32,10 +34,16 @@ app.controller('todoCtrl', function($scope, $http) {
     });
 
     $scope.todoAdd = function() {
-        $http.get('http://localhost:3000/items').success(function(data) {
-            $scope.todoList.push({todoText:$scope.todoInput, done:false});
-            $scope.todoInput = "";
-        });
+        console.log({todoText:$scope.todoInput, done:false});
+        var res = $http.post('http://localhost:3000/items',{todoText:$scope.todoInput, done:false});
+        // $http({
+        //     url: 'http://localhost:3000/items',
+        //     method: "POST",
+        //     data: JSON.stringify({todoText:$scope.todoInput, done:false}),
+        //     headers: {'Content-Type': 'Content-Type: application/json'}
+        // });
+        $scope.todoList.push({todoText:$scope.todoInput, done:false});
+        $scope.todoInput = "";
     };
 
     $scope.remove = function() {
