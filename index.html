@@ -20,7 +20,6 @@
 
 <script>
 var app = angular.module('ToDoList', []); 
-
 app.controller('todoCtrl', function($scope, $http) {
     $scope.todoList = [];
 
@@ -29,13 +28,15 @@ app.controller('todoCtrl', function($scope, $http) {
         console.log(data[0].toDoText);
         for (var i = 0; i <= data.length - 1; i++){
             $scope.todoList.push({todoText:data[i].toDoText, done:data[i].completed});
+            console.log(data[i].completed);
         }
         console.log($scope.todoList);
     });
 
     $scope.todoAdd = function() {
         console.log({todoText:$scope.todoInput, done:false});
-        $http.post('http://localhost:3000/items',{toDoText:$scope.todoInput, done:false});
+        console.log($scope.todoInput.done);
+        $http.post('http://localhost:3000/items',{toDoText:$scope.todoInput, completed:false});
         $scope.todoList.push({todoText:$scope.todoInput, done:$scope.todoInput.completed});
         $scope.todoInput = "";
     };
@@ -46,6 +47,7 @@ app.controller('todoCtrl', function($scope, $http) {
         angular.forEach(oldList, function(x) {
             if (!x.done) $scope.todoList.push(x);
         });
+        $http.delete('http://localhost:3000/items')
     };
 });
 

@@ -17,18 +17,33 @@
     },
     {
       "toDoText": "Example4",
-      "completed": true,
+      "completed": false,
       "id": 4
     },
     {
       "toDoText": "Example5",
-      "completed": false,
+      "completed": true,
       "id": 5
     },
     {
       "toDoText": "Example6",
       "completed": false,
       "id": 6
+    },
+    {
+      "toDoText": "yo",
+      "completed": false,
+      "id": 7
+    },
+    {
+      "toDoText": "yo",
+      "completed": false,
+      "id": 8
+    },
+    {
+      "toDoText": "yoo",
+      "completed": false,
+      "id": 9
     }
   ]
 }
