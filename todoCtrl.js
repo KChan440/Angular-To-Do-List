@@ -5,28 +5,27 @@ app.controller('todoCtrl', function($scope, $http) {
 
     $http.get('http://localhost:3000/items').success(function(data) {
         for (var i = 0; i <= data.length - 1; i++){
-            $scope.todoList.push({todoText:data[i].toDoText, done:data[i].completed});
+            $scope.todoList.push({todoText:data[i].toDoText, done:data[i].completed, id:data[i].id});
             console.log(data[i].completed);
             console.log(data.done);
         }
         console.log($scope.todoList);
     });
 
-    $scope.update = function(done, index) {
+    $scope.completed = function(done, x) {
         console.log(done);
         if (done){
-            $http.patch('http://localhost:3000/items/' + (index), {completed:true});
+            $http.patch('http://localhost:3000/items/' + (x.id), {completed:true});
         }else{
-            $http.patch('http://localhost:3000/items/' + (index), {completed:false});
+            $http.patch('http://localhost:3000/items/' + (x.id), {completed:false});
         }
     };
 
     $scope.todoAdd = function() {
-        console.log({todoText:$scope.todoInput, done:false});
-        console.log($scope.todoInput.done);
-        $http.post('http://localhost:3000/items',{toDoText:$scope.todoInput, completed:false});
-        $scope.todoList.push({todoText:$scope.todoInput, done:$scope.todoInput.completed});
-        $scope.todoInput = "";
+        $http.post('http://localhost:3000/items',{toDoText:$scope.todoInput, completed:false}).then(function(response){
+            $scope.todoList.push({todoText:$scope.todoInput, done:$scope.todoInput.completed, id: response.data.id});
+            $scope.todoInput = "";
+        });
     };
 
     $scope.remove = function() {
@@ -35,8 +34,9 @@ app.controller('todoCtrl', function($scope, $http) {
         angular.forEach(oldList, function(x) {
             console.log(x);
             if (!x.done) {
-                //$http.delete('http://localhost:3000/items/1');
                 $scope.todoList.push(x);
+            }else{
+                $http.delete('http://localhost:3000/items/' + x.id);
             }
         });
     };

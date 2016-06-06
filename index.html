@@ -15,8 +15,8 @@
 
 <br>
 
-<div ng-repeat="x in todoList | filter:statusFilter track by $index">
-    <input type="checkbox" ng-model="x.done" ng-click="update(x.done, $index+1)"><span ng-bind="x.todoText"></span>
+<div ng-repeat="x in todoList">
+    <input type="checkbox" ng-model="x.done" ng-click="completed(x.done, x)"><span ng-bind="x.todoText"></span>
 </div>
 
 <p><button ng-click="remove()">Remove marked</button></p>
