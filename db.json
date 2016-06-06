@@ -2,7 +2,7 @@
   "items": [
     {
       "toDoText": "Example1",
-      "completed": false,
+      "completed": true,
       "id": 1
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "toDoText": "hello",
-      "completed": true,
+      "completed": false,
       "id": 3
     },
     {
