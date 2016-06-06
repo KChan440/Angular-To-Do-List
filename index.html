@@ -12,8 +12,8 @@
 
 <br>
 
-<div ng-repeat="x in todoList">
-    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
+<div ng-repeat="x in todoList track by $index">
+    <input type="checkbox" ng-model="x.done" ng-click="update(x.done, $index+1)"><span ng-bind="x.todoText"></span>
 </div>
 
 <p><button ng-click="remove()">Remove marked</button></p>
@@ -23,15 +23,23 @@ var app = angular.module('ToDoList', []);
 app.controller('todoCtrl', function($scope, $http) {
     $scope.todoList = [];
 
-
     $http.get('http://localhost:3000/items').success(function(data) {
-        console.log(data[0].toDoText);
         for (var i = 0; i <= data.length - 1; i++){
             $scope.todoList.push({todoText:data[i].toDoText, done:data[i].completed});
             console.log(data[i].completed);
+            console.log(data.done);
         }
         console.log($scope.todoList);
     });
+
+    $scope.update = function(done, index) {
+        console.log(done);
+        if (done){
+            $http.patch('http://localhost:3000/items/' + (index), {completed:true});
+        }else{
+            $http.patch('http://localhost:3000/items/' + (index), {completed:false});
+        }
+    };
 
     $scope.todoAdd = function() {
         console.log({todoText:$scope.todoInput, done:false});
@@ -47,7 +55,6 @@ app.controller('todoCtrl', function($scope, $http) {
         angular.forEach(oldList, function(x) {
             if (!x.done) $scope.todoList.push(x);
         });
-        $http.delete('http://localhost:3000/items')
     };
 });
 
