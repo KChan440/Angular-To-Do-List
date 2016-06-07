@@ -1,14 +1,19 @@
 var app = angular.module('ToDoList', []); 
 
+//reverse allows new to-do items to appear at the top of ng-repeat array.
 app.filter('reverse', function() {
   return function(items) {
     return items.slice().reverse();
   };
 });
 
+//Main controller
 app.controller('todoCtrl', function($scope, $http) {
+
+    //Initiate to do list.
     $scope.todoList = [];
 
+    //Populate list with items from database.
     $http.get('http://localhost:3000/items').success(function(data) {
         for (var i = 0; i <= data.length - 1; i++){
             $scope.todoList.push({todoText:data[i].toDoText, done:data[i].completed, id:data[i].id});
@@ -18,6 +23,7 @@ app.controller('todoCtrl', function($scope, $http) {
         console.log($scope.todoList);
     });
 
+    //Toggle completion of to-do items
     $scope.completed = function(done, x) {
         console.log(done);
         if (done){
@@ -27,10 +33,12 @@ app.controller('todoCtrl', function($scope, $http) {
         }
     };
 
+    //Double click allows for to-do's to be edited
     $scope.editTodo = function(){
         console.log("I be editing");
     }
 
+    //Add new to-do
     $scope.todoAdd = function() {
         $http.post('http://localhost:3000/items',{toDoText:$scope.todoInput, completed:false}).then(function(response){
             $scope.todoList.push({todoText:$scope.todoInput, done:$scope.todoInput.completed, id: response.data.id});
@@ -38,6 +46,7 @@ app.controller('todoCtrl', function($scope, $http) {
         });
     };
 
+    //Called with the Clear Completed button.  Deletes items with status completed=true
     $scope.remove = function() {
         var oldList = $scope.todoList;
         $scope.todoList = [];
@@ -51,6 +60,7 @@ app.controller('todoCtrl', function($scope, $http) {
         });
     };
 
+    //Clear all existing to-do items
     $scope.clearAll = function() {
         var oldList = $scope.todoList;
         $scope.todoList = [];

@@ -1,29 +1,9 @@
 {
   "items": [
     {
-      "toDoText": "hello",
+      "toDoText": "Example To-Do Item",
       "completed": false,
       "id": 1
-    },
-    {
-      "toDoText": "italics",
-      "completed": false,
-      "id": 2
-    },
-    {
-      "toDoText": "toDoList",
-      "completed": false,
-      "id": 3
-    },
-    {
-      "toDoText": "sup",
-      "completed": false,
-      "id": 4
-    },
-    {
-      "toDoText": "temporary",
-      "completed": false,
-      "id": 5
     }
   ]
 }
