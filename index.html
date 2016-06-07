@@ -21,7 +21,7 @@
       <div id = "todoItems">
          <span style="font-style:italic;">{{todoInput}}</span>
          <div ng-repeat="x in todoList | reverse">
-            <input type="checkbox" ng-model="x.done" ng-click="completed(x.done, x)"><span ng-bind="x.todoText" ng-dblclick="editTodo(x)"></span>
+            <input type="checkbox" ng-model="x.done" ng-click="completed(x.done, x)"><span ng-bind="x.todoText"></span>
          </div>
       </div>
 
@@ -29,6 +29,6 @@
          <button ng-click="remove()">Clear Completed</button>
          <button ng-click="clearAll()">Clear All</button>
       </p>
-      
+
    </body>
 </html>

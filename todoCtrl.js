@@ -33,11 +33,6 @@ app.controller('todoCtrl', function($scope, $http) {
         }
     };
 
-    //Double click allows for to-do's to be edited
-    $scope.editTodo = function(){
-        console.log("I be editing");
-    }
-
     //Add new to-do
     $scope.todoAdd = function() {
         $http.post('http://localhost:3000/items',{toDoText:$scope.todoInput, completed:false}).then(function(response){
