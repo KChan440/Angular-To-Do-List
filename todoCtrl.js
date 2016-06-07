@@ -1,5 +1,11 @@
 var app = angular.module('ToDoList', []); 
 
+app.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});
+
 app.controller('todoCtrl', function($scope, $http) {
     $scope.todoList = [];
 
@@ -21,6 +27,10 @@ app.controller('todoCtrl', function($scope, $http) {
         }
     };
 
+    $scope.editTodo = function(){
+        console.log("I be editing");
+    }
+
     $scope.todoAdd = function() {
         $http.post('http://localhost:3000/items',{toDoText:$scope.todoInput, completed:false}).then(function(response){
             $scope.todoList.push({todoText:$scope.todoInput, done:$scope.todoInput.completed, id: response.data.id});
@@ -38,6 +48,15 @@ app.controller('todoCtrl', function($scope, $http) {
             }else{
                 $http.delete('http://localhost:3000/items/' + x.id);
             }
+        });
+    };
+
+    $scope.clearAll = function() {
+        var oldList = $scope.todoList;
+        $scope.todoList = [];
+        angular.forEach(oldList, function(x) {
+            console.log(x);
+            $http.delete('http://localhost:3000/items/' + x.id);
         });
     };
 });
