@@ -1,9 +1,3 @@
 {
-  "items": [
-    {
-      "toDoText": "Example To-Do Item",
-      "completed": false,
-      "id": 1
-    }
-  ]
+  "items": []
 }

@@ -1,0 +1,23 @@
+{
+  "name": "angular-to-do-list",
+  "version": "1.0.0",
+  "description": "simple to do list app",
+  "main": "angular.min.js",
+  "dependencies": {
+    "json-server": "^0.14.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KChan440/Angular-To-Do-List.git"
+  },
+  "author": "kuma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KChan440/Angular-To-Do-List/issues"
+  },
+  "homepage": "https://github.com/KChan440/Angular-To-Do-List#readme"
+}
